@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Infinitypaul\MultiStep\Store;
 
-
 use Illuminate\Support\Arr;
-use Infinitypaul\MultiStep\Controller\Keys;
 use Infinitypaul\MultiStep\Models\Step;
 use Infinitypaul\MultiStep\Store\Contracts\StepStorage;
 
@@ -22,7 +19,7 @@ class DatabaseStorage implements StepStorage
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function put($key, $value)
     {
@@ -32,9 +29,7 @@ class DatabaseStorage implements StepStorage
             $key = [$key => $value];
         }
 
-
         foreach ($key as $arrayKey => $arrayValue) {
-
             Arr::set($me, $arrayKey, $arrayValue);
         }
 
@@ -48,29 +43,27 @@ class DatabaseStorage implements StepStorage
 //            ['data' => json_encode($me), 'key' => $key]
 //        );
 
-
         //dd(Arr::get($me, $key));
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get($key)
     {
-        $keys = explode(".", $key);
+        $keys = explode('.', $key);
         $data = $this->step->where('slug', session()->get('step_key'))->first();
+
         return $data->data[end($keys)] ?? null;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function forget($key)
     {
-        if($this->step->where('key', $key)->delete()){
+        if ($this->step->where('key', $key)->delete()) {
             session()->forget('step_key');
-        };
+        }
     }
-
-
 }

@@ -1,9 +1,6 @@
 <?php
 
-
 namespace Infinitypaul\MultiStep\Controller;
-
-
 
 use Infinitypaul\MultiStep\MultiStepSystem;
 use Infinitypaul\MultiStep\Store\Contracts\StepStorage;
@@ -11,7 +8,6 @@ use Infinitypaul\MultiStep\Store\DatabaseStorage;
 use Infinitypaul\MultiStep\Store\JsonOutput;
 use Infinitypaul\MultiStep\Store\SessionStorage;
 use InvalidArgumentException;
-
 
 class MultiStepManager
 {
@@ -31,8 +27,8 @@ class MultiStepManager
 
     public function disk($name = null)
     {
-
         $name = $name ?: $this->getDefaultDriver();
+
         return $this->disks[$name] = $this->get($name);
     }
 
@@ -59,28 +55,28 @@ class MultiStepManager
 
     protected function getConfig()
     {
-
         return $this->getDefaultDriver() ?: null;
     }
 
-    protected function createSessionDriver($config){
-
-        return $this->createStepSystem( new SessionStorage(request()));
+    protected function createSessionDriver($config)
+    {
+        return $this->createStepSystem(new SessionStorage(request()));
     }
 
-    protected function createDatabaseDriver($config){
-
-        return $this->createStepSystem( new DatabaseStorage);
+    protected function createDatabaseDriver($config)
+    {
+        return $this->createStepSystem(new DatabaseStorage);
     }
 
-    protected function createJsonDriver(){
+    protected function createJsonDriver()
+    {
         return $this->createStepSystem(new JsonOutput);
     }
 
-    protected function createStepSystem(StepStorage $stepStorage){
+    protected function createStepSystem(StepStorage $stepStorage)
+    {
         return new MultiStepSystem($stepStorage);
     }
-
 
     /**
      * Get the default file driver.
@@ -91,7 +87,6 @@ class MultiStepManager
     {
         return $this->app['config']['steps.default'];
     }
-
 
     /**
      * Dynamically call the default driver instance.
@@ -104,8 +99,4 @@ class MultiStepManager
     {
         return $this->disk()->$method(...$parameters);
     }
-
-
-
-
 }

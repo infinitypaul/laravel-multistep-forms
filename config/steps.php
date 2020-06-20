@@ -5,5 +5,5 @@
  */
 return [
     'default' => 'session',
-    'table_names' => env('STEP_TABLE_NAME', 'multisteps')
+    'table_names' => env('STEP_TABLE_NAME', 'multisteps'),
 ];
