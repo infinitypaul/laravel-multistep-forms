@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase;
 
 class ExampleTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [MultiStepFormsServiceProvider::class];

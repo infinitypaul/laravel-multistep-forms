@@ -27,7 +27,8 @@ class Step extends Model
         });
     }
 
-    protected static function getHashedKeys(){
+    protected static function getHashedKeys()
+    {
         $key = Keys::getHashedToken();
         while (self::where('slug', $key)->exists()) {
             $key = Keys::getHashedToken();

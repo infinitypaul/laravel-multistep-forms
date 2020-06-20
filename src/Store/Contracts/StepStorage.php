@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Infinitypaul\MultiStep\Store\Contracts;
 
 /**
- * Interface StepStorage
- * @package Infinitypaul\Step\Store\Contracts
+ * Interface StepStorage.
  */
 interface StepStorage
 {
