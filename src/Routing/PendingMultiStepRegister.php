@@ -67,10 +67,10 @@ class PendingMultiStepRegister
             Route::group([
                 'prefix' => $this->uri,
             ], function () use ($step) {
-               Route::resource($step, "{$this->controller}Step{$step}")
+                Route::resource($step, "{$this->controller}Step{$step}")
                ->only($this->only)
                ->names($this->naming);
-           });
+            });
         });
     }
 }
